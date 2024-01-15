@@ -9,18 +9,12 @@ import java.util.Optional;
 
 @Service
 public class SimpleVacancyService implements VacancyService {
-//    private static final SimpleVacancyService INSTANCE = new SimpleVacancyService();
 
     private final VacancyRepository vacancyRepository;
-
 
     private SimpleVacancyService(VacancyRepository vacancyRepository) {
         this.vacancyRepository = vacancyRepository;
     }
-
-//    public static SimpleVacancyService getInstance() {
-//        return INSTANCE;
-//    }
 
     @Override
     public Vacancy save(Vacancy vacancy) {
