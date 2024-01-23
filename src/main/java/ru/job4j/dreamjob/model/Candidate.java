@@ -1,6 +1,7 @@
 package ru.job4j.dreamjob.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class Candidate {
     private int id;
     private String name;
     private String description;
-    private final LocalDateTime creationDate = LocalDateTime.now();
+    private final LocalDateTime creationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     private int cityId;
     private int fileId;
 
