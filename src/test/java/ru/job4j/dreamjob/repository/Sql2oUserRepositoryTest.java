@@ -71,10 +71,11 @@ class Sql2oUserRepositoryTest {
 
     @Test
     public void whenSameEmailAdd() {
-        var user1 = sql2oUserRepository.save(new User(0, "email", "name1", "password1"));
+        var user = new User(0, "email", "name1", "password1");
+        var userSaved = sql2oUserRepository.save(user);
         var user2 = new User(0, "email", "name2", "password2");
-        assertThatThrownBy(() -> sql2oUserRepository.save(user2))
-                .isInstanceOf(Sql2oException.class);
+        assertThat(userSaved.get()).usingRecursiveComparison().isEqualTo(user);
+        assertThat(sql2oUserRepository.findByEmailAndPassword(user2.getEmail(), user2.getPassword())).isEqualTo(empty());
     }
 
 }
