@@ -23,13 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistrationPage(HttpSession session, Model model) {
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
+    public String getRegistrationPage() {
         return "users/register";
     }
 
@@ -44,13 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(HttpSession session, Model model) {
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
+    public String getLoginPage() {
         return "users/login";
     }
 
