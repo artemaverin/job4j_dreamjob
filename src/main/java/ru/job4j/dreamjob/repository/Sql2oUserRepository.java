@@ -32,15 +32,16 @@ public class Sql2oUserRepository implements UserRepository {
             .addParameter("password", user.getPassword());
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
+            return Optional.of(user);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
         }
-        return Optional.of(user);
+        return Optional.empty();
     }
 
     @Override
     public Optional<User> findByEmailAndPassword(String email, String password) {
-        Optional<User> user = Optional.empty();
+        Optional<User> user;
         try (var connection = sql2o.open()) {
             var sql = """
                     SELECT * FROM users where email = :email and password = :password
